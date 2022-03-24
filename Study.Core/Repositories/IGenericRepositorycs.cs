@@ -2,7 +2,7 @@
 
 namespace Study.Core.Repositories
 {
-    public interface IGenericRepositorycs<T> where T : class
+    public interface IGenericRepository<T> where T : class
     {
         IQueryable<T> GetAll(Expression<Func<T, bool>> expression);
         Task<T> GetByIdAsync(int id);
