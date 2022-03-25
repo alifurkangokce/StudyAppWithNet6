@@ -7,6 +7,8 @@ using Study.Repository.UnitOfWorks;
 using System.Reflection;
 using Study.Core.Services;
 using Pomelo.EntityFrameworkCore.MySql;
+using Study.Service.Mapping;
+using Study.Service.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +20,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
-//builder.Services.AddScoped(typeof(IService<>),typeof(Service<>));
+builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
+builder.Services.AddAutoMapper(typeof(MapProfile));
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
     x.UseMySql(builder.Configuration.GetConnectionString("MySqlConnection"),ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("MySqlConnection")), options =>

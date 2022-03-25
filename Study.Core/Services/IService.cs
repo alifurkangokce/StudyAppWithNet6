@@ -14,10 +14,10 @@ namespace Study.Core.Services
         Task<T> GetByIdAsync(int id);
         IQueryable<T> Where(Expression<Func<T, bool>> expression);
 
-        Task AddAsync(T entity);
+        Task<T> AddAsync(T entity);
 
-        Task AddRangeAsync(IEnumerable<T> entities);
-        Task<bool> Any(Expression<Func<T, bool>> expression);
+        Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities);
+        Task<bool> AnyAsync(Expression<Func<T, bool>> expression);
 
         Task UpdateAsync(T entity);
 
