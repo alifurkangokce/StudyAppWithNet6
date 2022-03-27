@@ -16,7 +16,8 @@ namespace Study.Service.Mapping
             CreateMap<Product, ProductDto>().ReverseMap();
             CreateMap<Category, CategoryDto>().ReverseMap();
             CreateMap<ProductFeature, ProductFeatureDto>().ReverseMap();
-            CreateMap<ProductUpdateDto, Product>();
+            CreateMap<ProductUpdateDto, Product>().ReverseMap();
+            CreateMap<ProductWithCategoryDto, Product>().ReverseMap();
 
         }
     }

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Study.Core.DTOs
 {
-    public class NoContentDto
+    public class ProductWithCategoryDto:ProductDto
     {
-
+        public CategoryDto Category{ get; set; }
     }
 }

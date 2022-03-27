@@ -11,18 +11,20 @@ namespace Study.Repository.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly AppDbContext _context;
+        protected readonly AppDbContext _context;
         private readonly DbSet<T> _dbset;
 
         public GenericRepository(AppDbContext context)
         {
             _context = context;
             _dbset = _context.Set<T>();
+            
         }
 
         public async Task AddAsync(T entity)
         {
             await _dbset.AddAsync(entity);
+            
         }
 
         public async Task AddRangeAsync(IEnumerable<T> entities)
