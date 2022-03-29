@@ -4,6 +4,8 @@ using Study.Core.DTOs;
 
 namespace Study.API.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class CustomBaseController : ControllerBase
     {
         [NonAction]
