@@ -11,7 +11,7 @@ namespace Study.API.Controllers
         [NonAction]
         public IActionResult CreateActionResult<T>(CustomResponseDto<T> customResponseDto)
         {
-            if (customResponseDto.StatusCode==204)
+            if (customResponseDto.StatusCode == 204)
             {
                 return new ObjectResult(null)
                 {
@@ -21,7 +21,8 @@ namespace Study.API.Controllers
 
             return new ObjectResult(customResponseDto)
             {
-                StatusCode = customResponseDto.StatusCode
+                StatusCode = customResponseDto.StatusCode,
+                Value = customResponseDto.Data
             };
         }
     }

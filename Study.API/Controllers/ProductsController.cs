@@ -21,7 +21,7 @@ namespace Study.API.Controllers
         {
             var products = await _service.GetAllAsync();
             var productsDtos = _mapper.Map<List<ProductDto>>(products.ToList());
-            return CreateActionResult(CustomResponseDto<List<ProductDto>>.Success(200, productsDtos));
+            return CreateActionResult(CustomResponseDto<List<ProductDto>>.Success(201, productsDtos));
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)

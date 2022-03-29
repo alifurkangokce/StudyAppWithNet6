@@ -6,16 +6,26 @@ using Study.Repository.Repositories;
 using Study.Repository.UnitOfWorks;
 using System.Reflection;
 using System.Text.Json.Serialization;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Mvc;
 using Study.Core.Services;
 using Pomelo.EntityFrameworkCore.MySql;
+using Study.API.Filters;
 using Study.Service.Mapping;
 using Study.Service.Services;
+using Study.Service.Validation;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers().AddJsonOptions(x =>
+builder.Services.AddControllers(options => options.Filters.Add(new ValidateFilterAttribute())).AddFluentValidation(x=>x.RegisterValidatorsFromAssemblyContaining<ProductDtoValidator>()).AddJsonOptions(x =>
     x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
 
 //builder.Services.AddControllers();
 
