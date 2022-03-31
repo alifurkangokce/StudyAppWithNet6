@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Study.Core.Repositories;
 using Study.Core.Services;
 using Study.Core.UnitOfWorks;
+using Study.Service.Exceptions;
 
 namespace Study.Service.Services
 {
@@ -27,9 +28,15 @@ namespace Study.Service.Services
            return await _repository.GetAll().ToListAsync();
         }
 
-        public Task<T> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
-            return _repository.GetByIdAsync(id);
+            var result = await _repository.GetByIdAsync(id);
+            if (result==null)
+            {
+                throw new NotFoundException($"{typeof(T).Name}({id}) not found");
+            }
+
+            return result;
         }
 
         public  IQueryable<T> Where(Expression<Func<T, bool>> expression)

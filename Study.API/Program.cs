@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Study.Core.Services;
 using Pomelo.EntityFrameworkCore.MySql;
 using Study.API.Filters;
+using Study.API.Middlewares;
 using Study.Service.Mapping;
 using Study.Service.Services;
 using Study.Service.Validation;
@@ -62,6 +63,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCustomException();
 
 app.UseAuthorization();
 
