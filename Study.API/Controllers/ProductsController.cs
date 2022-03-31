@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Study.API.Filters;
 using Study.Core;
 using Study.Core.DTOs;
 using Study.Core.Services;
@@ -23,6 +24,7 @@ namespace Study.API.Controllers
             var productsDtos = _mapper.Map<List<ProductDto>>(products.ToList());
             return CreateActionResult(CustomResponseDto<List<ProductDto>>.Success(201, productsDtos));
         }
+        [ServiceFilter(type:typeof(NotFoundFilter<Product>))]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
